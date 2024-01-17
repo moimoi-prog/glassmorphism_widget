@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 class GradientGlassContainer extends StatelessWidget {
@@ -37,48 +35,25 @@ class GradientGlassContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: width,
+      height: height,
       decoration: BoxDecoration(
-        boxShadow: shadow
-            ? boxShadow ??
-                [
-                  BoxShadow(
-                    blurRadius: 24,
-                    spreadRadius: 16,
-                    color: Colors.black.withOpacity(0.15),
-                  ),
-                ]
-            : null,
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(radius),
-        child: BackdropFilter(
-          filter: ImageFilter.blur(
-            sigmaX: sigmaX,
-            sigmaY: sigmaY,
-          ),
-          child: Container(
-            width: width,
-            height: height,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  beginColor,
-                  endColor,
-                ],
-                begin: beginAlignment,
-                end: endAlignment,
-              ),
-              borderRadius: BorderRadius.circular(radius),
-              border: border ??
-                  Border.all(
-                    width: 1,
-                    color: Colors.white.withOpacity(0.3),
-                  ),
-            ),
-            child: child,
-          ),
+        gradient: LinearGradient(
+          colors: [
+            beginColor,
+            endColor,
+          ],
+          begin: beginAlignment,
+          end: endAlignment,
         ),
+        borderRadius: BorderRadius.circular(radius),
+        border: border ??
+            Border.all(
+              width: 1,
+              color: Colors.white.withOpacity(0.3),
+            ),
       ),
+      child: child,
     );
   }
 }
